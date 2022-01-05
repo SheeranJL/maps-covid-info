@@ -1,0 +1,27 @@
+.panel-container {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    text-align: center;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    height: 350px;
+
+    .filter-item {
+      display: flex;
+
+      .filter-item-title {
+        width: 20%;
+      }
+
+      .filter-item-selector {
+        width: 80%;
+      }
+    }
+  }
+}
