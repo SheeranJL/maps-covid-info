@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
-import {modalPopupStyle, modalTitleStyle, clinicInfoStyle, openingHoursStyle} from './map-styles.js';
+import {modalPopupStyle, modalTitleStyle, clinicInfoStyle, openingHoursStyle, mapContainerStyle} from './map-styles.js';
 
 const MapContainer = (props) => {
 
@@ -22,7 +22,8 @@ const MapContainer = (props) => {
 
   return (
 
-    <Map google = {props.google} style={{width: '100%', height: '100%'}} zoom = {10} initialCenter = {{lat: -33.868820, lng: 151.209290}}>
+    <div>
+    <Map google = {props.google} style={mapContainerStyle} zoom = {10} initialCenter = {{lat: -33.868820, lng: 151.209290}}>
 
       { props.filtered.map((site, index) => <Marker title={site.title} name={site.locationInstructions} position={{lat: site.Latitude, lng: site.Longitude}} data={site} onClick={onMarkerClick}/>) }
 
@@ -78,9 +79,6 @@ const MapContainer = (props) => {
                     <p style={{width: 'auto'}}>{ `${activeMarker.data.sundayOpeningHours} - ${activeMarker.data.sundayClosingHours}`  }</p>
                   </div>
 
-
-
-
                   <h3 style={{marginBottom: '5px'}}> Additional Info </h3>
 
                   <div style={openingHoursStyle}>
@@ -109,7 +107,7 @@ const MapContainer = (props) => {
 
         </InfoWindow>
     </Map>
-
+    </div>
 
   )
 }

@@ -25,49 +25,59 @@ const Panel = ({filterOpenNow, filterByDayAndBooking}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     filterByDayAndBooking(selectedDay, bookingRequired);
+    setSelectedDay(null)
+    setBookingRequired(null)
   }
 
 
 
   return (
     <div className='panel-container'>
-      <h1 className='title'>Filter Search</h1>
-
-      <div className='filter-container'>
-
-
-        <h3>Quick Search</h3>
-        <div className='filter-item'>
-          <label classname='filter-item-title' for='open-now'>Open Today</label>
-          <input classname='filter-item-selector' type='checkbox' id='open-now' name='open-now' onChange={handleChange}/>
-        </div>
-
 
         <form onSubmit={handleSubmit}>
 
-          <h2> Filter </h2>
-
-          <label for="days">Select a day</label>
-          <select name="days" id="days" onChange={handleSelection}>
-            <option value="" selected disabled hidden>Choose here</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
-          </select>
-
-          <div className='radio-buttons' onChange={handleRadioSelection}>
-            <input type="radio" value="yes" name="booking-required" /> Yes
-            <input type="radio" value="no" name="booking-required" /> No
+          <div className='drop-down-menu'>
+            <h3 className='day-select-header' for="days">Select a day</h3>
+            <select className='select-box' name="days" id="days" onChange={handleSelection}>
+              <option value="" selected disabled hidden>Choose here</option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
           </div>
 
+          <h3 className='booking-required-header'>Booking required?</h3>
+
+          <div className='radio-buttons' onChange={handleRadioSelection}>
+
+            <div className='radio-box'>
+              <label for="booking-required">Yes</label>
+              <input type="radio" value="yes" name="booking-required" />
+            </div>
+
+            <div className='radio-box'>
+              <label for="booking-required">No</label>
+              <input type="radio" value="no" name="booking-required" />
+            </div>
+
+            <div className='radio-box'>
+              <label for="booking-required">Any</label>
+              <input type="radio" value="any" name="booking-required" />
+            </div>
+
+          </div>
+
+          <div className='submit-modal-button'>
           <button type='submit'>Search</button>
+          </div>
+
         </form>
 
-      </div>
+
 
 
     </div>

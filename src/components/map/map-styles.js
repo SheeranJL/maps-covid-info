@@ -27,3 +27,12 @@ export const bookingLinkStyle = {
   flexDirection: 'column',
   height: '24px'
 }
+
+export const mapContainerStyle = {
+  position: "absolute",
+  height: 'calc(100% - 60px)',
+  top: "0px",
+  left: "0px",
+  right: "0px",
+  bottom: "0px"
+};

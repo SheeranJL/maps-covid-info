@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './app.scss';
 
 import GoogleApiWrapper from './components/map/map.js';
-import Panel from './components/panel/panel.js'
+import Header from './components/header/header.js';
 
 const App = () => {
 
@@ -88,16 +88,9 @@ const App = () => {
     (
      <h1>loading</h1>
     ) : (
-      <div className='app-container'>
-
-        <div className='left-side-panel'>
-          <Panel filterOpenNow={filterOpenNow} filterByDayAndBooking={filterByDayAndBooking}/>
-        </div>
-
-        <div className='main-content-container'>
+      <div>
+          <Header filterOpenNow={filterOpenNow} filterByDayAndBooking={filterByDayAndBooking}/>
           <GoogleApiWrapper filtered={filtered} />
-        </div>
-
       </div>
     )
 }
