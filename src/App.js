@@ -64,10 +64,22 @@ const App = () => {
     }
   }
 
-  const filterByDay = (day) => {
+  const filterByDayAndBooking = (day, booking) => {
+
     const filteredData = data.filter((loc) => loc[day] !== '')
+
     setFiltered([...filteredData])
 
+    console.log('day', day)
+    console.log('booking', booking)
+
+    if (booking === 'yes') {
+      const filteredData = data.filter((loc) => loc[day] !== '' && loc.bookingRequired !== 'N')
+      setFiltered([...filteredData])
+    } else {
+      const filteredData = data.filter((loc) => loc[day] !== '')
+      setFiltered([...filteredData])
+    }
   }
 
 
@@ -79,7 +91,7 @@ const App = () => {
       <div className='app-container'>
 
         <div className='left-side-panel'>
-          <Panel filterOpenNow={filterOpenNow} filterByDay={filterByDay}/>
+          <Panel filterOpenNow={filterOpenNow} filterByDayAndBooking={filterByDayAndBooking}/>
         </div>
 
         <div className='main-content-container'>
