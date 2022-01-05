@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import './panel.scss';
 
-const Panel = () => {
+const Panel = ({filterOpenNow, filterByDay}) => {
+
+  const [openTime, setOpenTime] = useState('')
+
+  const handleChange = (e) => {
+    filterOpenNow(e.target.checked)
+  };
+
+  const handleSelection = (e) => {
+    filterByDay(`${e.target.value.toLowerCase()}OpeningHours`)
+  }
 
   return (
     <div className='panel-container'>
@@ -10,44 +20,23 @@ const Panel = () => {
       <div className='filter-container'>
 
         <div className='filter-item'>
-          <label classname='filter-item-title' for='open-now'>Open Now</label>
-          <input classname='filter-item-selector' type='checkbox' id='open-now' name='open-now' />
+          <label classname='filter-item-title' for='open-now'>Open Today</label>
+          <input classname='filter-item-selector' type='checkbox' id='open-now' name='open-now' onChange={handleChange}/>
         </div>
 
-        <div className='filter-item'>
-          <label for='open-now'>Open Monday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
+        <label for="days">Select a day</label>
 
-        <div className='filter-item'>
-          <label for='open-now'>Open Tuesday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
+        <select name="days" id="days" onChange={handleSelection}>
+          <option value="" selected disabled hidden>Choose here</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
 
-        <div className='filter-item'>
-          <label for='open-now'>Open Wednesday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
-
-        <div className='filter-item'>
-          <label for='open-now'>Open Thursday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
-
-        <div className='filter-item'>
-          <label for='open-now'>Open Friday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
-
-        <div className='filter-item'>
-          <label for='open-now'>Open Saturday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
-
-        <div className='filter-item'>
-          <label for='open-now'>Open Sunday</label>
-          <input type='checkbox' id='open-now' name='open-now' />
-        </div>
 
 
       </div>

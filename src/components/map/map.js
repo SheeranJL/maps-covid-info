@@ -24,7 +24,7 @@ const MapContainer = (props) => {
 
     <Map google = {props.google} style={{width: '100%', height: '100%'}} zoom = {10} initialCenter = {{lat: -33.868820, lng: 151.209290}}>
 
-      { props.data.clinicData.map((site, index) => <Marker title={site.title} name={site.locationInstructions} position={{lat: site.Latitude, lng: site.Longitude}} data={site} onClick={onMarkerClick}/>) }
+      { props.filtered.map((site, index) => <Marker title={site.title} name={site.locationInstructions} position={{lat: site.Latitude, lng: site.Longitude}} data={site} onClick={onMarkerClick}/>) }
 
         <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
           {
