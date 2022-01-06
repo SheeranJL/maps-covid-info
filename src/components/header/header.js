@@ -11,7 +11,7 @@ const Header = ({filterOpenNow, filterByDayAndBooking}) => {
     return (
       <div className='header-container'>
 
-        <h2 className='title-header'> NSW Covid Testing Clinics </h2>
+        <h2 className='title-header'> Testing clinics </h2>
 
         <div className='filter-option'>
           <h3 onClick={() => setToggleModal(!toggleModal)}>Filter</h3>
