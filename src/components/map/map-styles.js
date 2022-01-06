@@ -3,7 +3,8 @@ export const modalPopupStyle = {
   height: '350px',
   display: 'flex',
   flexDirection: 'column',
-  textAlign: 'center'
+  textAlign: 'center',
+  position: 'relative'
 }
 
 export const modalTitleStyle = {
@@ -30,7 +31,7 @@ export const bookingLinkStyle = {
 
 export const mapContainerStyle = {
   position: "absolute",
-  height: 'calc(100% - 60px)',
+  height: 'calc(100% - 35px)',
   top: "0px",
   left: "0px",
   right: "0px",

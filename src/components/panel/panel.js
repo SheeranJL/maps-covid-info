@@ -25,8 +25,6 @@ const Panel = ({filterOpenNow, filterByDayAndBooking}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     filterByDayAndBooking(selectedDay, bookingRequired);
-    setSelectedDay(null)
-    setBookingRequired(null)
   }
 
 

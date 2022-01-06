@@ -24,6 +24,7 @@ const App = () => {
 
   const filterOpenNow = (value) => {
 
+    
     if (value) {
       function formatAMPM(date) {
         let hours = date.getHours();

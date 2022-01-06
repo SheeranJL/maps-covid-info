@@ -82,7 +82,7 @@ const MapContainer = (props) => {
                   <h3 style={{marginBottom: '5px'}}> Additional Info </h3>
 
                   <div style={openingHoursStyle}>
-                    <p style={{width: '40%', textAlign: 'left'}}><b>Walk in?</b></p>
+                    <p style={{width: '40%', textAlign: 'left'}}><b>Walk in?</b> </p>
                     <p style={{width: 'auto'}}>{activeMarker.data.walkInAllowed === 'Y' ? <p style={{color: 'green', fontWeight: 'bold'}}> YES </p> : <p style={{color: 'red', fontWeight: 'bold'}}> NO </p>}</p>
                   </div>
 
@@ -104,8 +104,8 @@ const MapContainer = (props) => {
             )
           }
 
-
         </InfoWindow>
+
     </Map>
     </div>
 

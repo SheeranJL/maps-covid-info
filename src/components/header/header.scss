@@ -1,10 +1,11 @@
 .header-container {
   display: flex;
   flex-direction: row;
-  height: 60px;
+  height: 35px;
   align-items: center;
   justify-content: center;
   align-self: center;
+  background-color: rgba(62, 52, 57, 0.3);
 
   .title-header {
     margin-left: 5%;
@@ -18,10 +19,11 @@
 
   .modal {
     position: absolute;
+    border-radius: 3%;
     top: 0;
     right: 0;
-    margin-top: 70px;
-    margin-right: 7%;
+    margin-top: 40px;
+    margin-right: 7.2%;
     margin-bottom: 100px;
     z-index: 200;
     background-color: white;
