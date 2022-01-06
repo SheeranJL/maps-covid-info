@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/maps-covid-info/static/css/main.55cdb382.css",
+    "main.js": "/maps-covid-info/static/js/main.11906390.js",
+    "static/js/787.70724e84.chunk.js": "/maps-covid-info/static/js/787.70724e84.chunk.js",
+    "index.html": "/maps-covid-info/index.html",
+    "main.55cdb382.css.map": "/maps-covid-info/static/css/main.55cdb382.css.map",
+    "main.11906390.js.map": "/maps-covid-info/static/js/main.11906390.js.map",
+    "787.70724e84.chunk.js.map": "/maps-covid-info/static/js/787.70724e84.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55cdb382.css",
+    "static/js/main.11906390.js"
+  ]
+}
