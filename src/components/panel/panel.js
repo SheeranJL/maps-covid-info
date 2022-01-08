@@ -3,25 +3,22 @@ import './panel.scss';
 
 const Panel = ({filterOpenNow, filterByDayAndBooking}) => {
 
+  //Local state variables for each of the dropdown filtering selection options within the modal//
   const [openTime, setOpenTime] = useState('')
   const [selectedDay, setSelectedDay] = useState(null);
   const [bookingRequired, setBookingRequired] = useState(null);
 
-  const selectionBox = useRef();
-
-  const handleChange = (e) => {
-    filterOpenNow(e.target.checked);
-  };
-
+  //When a user selects a day from the dropdown, it will save the value as a string which will later be used as the property value on the object we will use to filter through options.
   const handleSelection = (e) => {
     setSelectedDay(`${e.target.value.toLowerCase()}OpeningHours`);
-     // e.target.selectedIndex = 0;
   }
 
+  //We will save the value of the users radio button selection within the setBookingRequired state variable
   const handleRadioSelection = (e) => {
     setBookingRequired(e.target.value);
   }
 
+  //On submit, we take both values of the selected day, and the booking required radio buttons and pass this through to our filterByDayAndBooking function in App.js to return the filtered locations.
   const handleSubmit = (e) => {
     e.preventDefault();
     filterByDayAndBooking(selectedDay, bookingRequired);
@@ -49,39 +46,28 @@ const Panel = ({filterOpenNow, filterByDayAndBooking}) => {
           </div>
 
           <h3 className='booking-required-header'>Booking required?</h3>
-
           <div className='radio-buttons' onChange={handleRadioSelection}>
-
             <div className='radio-box'>
               <label for="booking-required">Yes</label>
               <input type="radio" value="yes" name="booking-required" />
             </div>
-
             <div className='radio-box'>
               <label for="booking-required">No</label>
               <input type="radio" value="no" name="booking-required" />
             </div>
-
             <div className='radio-box'>
               <label for="booking-required">Any</label>
               <input type="radio" value="any" name="booking-required" />
             </div>
-
           </div>
 
           <div className='submit-modal-button'>
-          <button type='submit'>Search</button>
+            <button type='submit'>Search</button>
           </div>
 
         </form>
-
-
-
-
     </div>
-
   )
-
 }
 
 export default Panel;

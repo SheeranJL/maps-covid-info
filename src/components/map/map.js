@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
 import {modalPopupStyle, modalTitleStyle, clinicInfoStyle, openingHoursStyle, mapContainerStyle} from './map-styles.js';
+import apiKey from '../../keys.js';
 
 const MapContainer = (props) => {
 
@@ -10,18 +11,17 @@ const MapContainer = (props) => {
   const [info, setInfo] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const onMarkerClick = async(props, marker, info) => {
-    await setLoading(true)
-    await setSelectedPlace(props.position);
-    await setActiveMarker(marker);
-    await setShowingInfoWindow(true);
-    await setLoading(false)
+  //This function will run whenever a user clicks on a map marker to view the opening times etc.
+  const onMarkerClick = (props, marker, info) => {
+     setLoading(true)
+     setSelectedPlace(props.position);
+     setActiveMarker(marker);
+     setShowingInfoWindow(true);
+     setLoading(false)
   }
 
-  console.log(activeMarker)
 
   return (
-
     <div>
     <Map google = {props.google} style={mapContainerStyle} zoom = {10} initialCenter = {{lat: -33.868820, lng: 151.209290}}>
 
@@ -95,23 +95,17 @@ const MapContainer = (props) => {
                     <p style={{width: '40%', textAlign: 'left'}}><b>Booking Phone:</b></p>
                     <p style={{width: 'auto'}}>{activeMarker.data.bookingPhoneNumber ? activeMarker.data.bookingPhoneNumber : 'None provided'}</p>
                   </div>
-
                 </div>
-
-
-
               </div>
             )
           }
-
         </InfoWindow>
-
     </Map>
     </div>
-
   )
 }
 
+//Wrapping our google maps API within the neccessary wrapper with our API key.
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCgADKzaybsy-ZE07EeFjD7yg6w9qU-p9I'
+  apiKey: apiKey
 })(MapContainer);

@@ -6,11 +6,16 @@ import Header from './components/header/header.js';
 
 const App = () => {
 
+  //Decaring app state//
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [reset, setReset] = useState(true)
 
+
+  //On first render                             //
+  //This function will load all testing clinics //
+  //                                            //
   useEffect( () => {
     fetch('https://data.nsw.gov.au/data/dataset/21c72b00-0834-464d-80f1-75fec38454ce/resource/34e9b08c-4a17-4273-bab5-c3dfd37663cb/download/covid-19-test-clinics.json')
       .then(res => res.json())
@@ -22,60 +27,22 @@ const App = () => {
   }, [reset])
 
 
-  const filterOpenNow = (value) => {
-
-    
-    if (value) {
-      function formatAMPM(date) {
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        hours = hours % 12;
-        hours = hours ? hours : 12;
-        minutes = minutes < 10 ? '0'+minutes : minutes;
-        let strTime = hours + ':' + minutes + ' ';
-        return strTime;
-      }
-
-      let dayString;
-      const time = formatAMPM(new Date);
-      const dateNow = new Date();
-      const day = dateNow.getDay();
-
-      if (day === 0) {
-        dayString = 'sundayOpeningHours'
-      } else if (day === 1) {
-        dayString = 'mondayOpeningHours'
-      } else if (day === 2) {
-        dayString = 'tuesdayOpeningHours'
-      } else if (day === 3) {
-        dayString = 'wednesdayOpeningHours'
-      } else if (day === 4) {
-        dayString = 'thursdayOpeningHours'
-      } else if (day === 5) {
-        dayString = 'fridayOpeningHours'
-      } else if (day === 6) {
-        dayString = 'saturdayOpeningHours'
-      }
-
-      const filteredData = data.filter((loc) => loc[dayString] !== '')
-      setFiltered([...filteredData])
-
-    } else {
-      setReset(!reset)
-    }
-  }
-
+  //This function takes in the day selected in the modal form as well as the booking specification requirements and uses this information to filter through, and return the data to state//
   const filterByDayAndBooking = (day, booking) => {
 
+    console.log(booking)
+    //if the site (loc) has a day value ([day]) equal to an empty sting, this means the clinic is not open on that day and will not be included in the filtered data below.
     const filteredData = data.filter((loc) => loc[day] !== '')
-
     setFiltered([...filteredData])
 
-    console.log('day', day)
-    console.log('booking', booking)
-
+    //If the booking selection in the submitted modal form is 'yes', then we filter through the data and grab sites where the .bookingRequired property value does not equal 'N' (no).
+    //If the booking selection in the submitted modal form is 'no', then we filter through the data and grab sites where the .bookingRequired property value does not equal 'Y' (yes).
+    //Else, if the user selects 'any', then we simply return all sites so long as they're open on the specific day.
     if (booking === 'yes') {
       const filteredData = data.filter((loc) => loc[day] !== '' && loc.bookingRequired !== 'N')
+      setFiltered([...filteredData])
+    } else if (booking === 'no') {
+      const filteredData = data.filter((loc) => loc[day] !== '' && loc.bookingRequired !== 'Y')
       setFiltered([...filteredData])
     } else {
       const filteredData = data.filter((loc) => loc[day] !== '')
@@ -84,13 +51,12 @@ const App = () => {
   }
 
 
-
   return loading ?
     (
      <h1>loading</h1>
     ) : (
       <div>
-          <Header filterOpenNow={filterOpenNow} filterByDayAndBooking={filterByDayAndBooking}/>
+          <Header filterByDayAndBooking={filterByDayAndBooking}/>
           <GoogleApiWrapper filtered={filtered} />
       </div>
     )
