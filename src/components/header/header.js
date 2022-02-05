@@ -6,7 +6,7 @@ import './header.scss'
 const Header = ({filterOpenNow, filterByDayAndBooking}) => {
 
   //Setting our local state for whether or not our 'filter' button has been clicked. If true, the modal will show, if false, it will not.
-  const [toggleModal, setToggleModal] = useState(true);
+  const [toggleModal, setToggleModal] = useState(false);
 
 
     return (
